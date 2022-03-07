@@ -1,0 +1,224 @@
+.title-style {
+    font-size: 50px;
+    font-weight: 700;
+    padding-top: 2rem;
+    padding-left: 2rem;
+    color: rgb(181, 178, 196);
+}
+
+#chartResults{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.col-form-label{
+    font-weight: 200;
+    color: rgb(181, 178, 196);
+}
+
+.bg-top {
+    background-image: url('https://cdn.pixabay.com/photo/2021/04/07/17/13/sea-6159674_960_720.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.bg-dash {
+    background-color: #7eca90;
+}
+
+
+.progress-mp {
+    margin-bottom: 1rem;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+
+.radio-button {
+    margin: 5px;
+}
+
+.filter-style {
+    margin-left: 1rem;
+    padding-left: 1rem;
+}
+
+.filter-style-item {
+    padding-left: 1rem;
+}
+
+.search-style {
+    padding-top: 2rem;
+    padding-left: 2rem;
+}
+
+.card-shadow {
+    display: block;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border-radius: 0.35rem;
+    box-shadow: 0 0 0.9em 1px #cec9c9;
+}
+
+.card-dist {
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.35rem;
+}
+
+.card-footer {
+    padding: 1rem 1.35rem;
+    background-color: rgba(33, 40, 50, 0.03);
+    border-top: 1px solid rgba(33, 40, 50, 0.125);
+    display: flex;
+    position: relative;
+}
+
+.align-items-center {
+    align-items: center ;
+  
+}
+
+.justify-content-center {
+    justify-content: space-between ;
+}
+
+.distant{
+   margin: 5px;
+}
+
+.d-flex {
+    display: flex ;
+}
+
+.modal-dialog-full-width {
+    width: 50%;
+    height: 50%;
+    min-height: 60%;
+    min-width: 90%;
+    position: relative;
+}
+
+.modal-content-full-width {
+    border-radius: 10px;
+    background-color: #e7e7e7
+}
+
+.modal-header-full-width {
+    border-bottom: 1px solid #313131;
+}
+
+.modal-footer-full-width {
+    border-top: 1px solid #00b800;
+}
+
+.mat-form-field-appearance-outline {
+    margin-top: 1rem;
+}
+
+.modal-header-bg {
+    background-color: #313131;
+}
+
+#chartResults {
+    padding: 1rem;
+}
+
+.size-progress {
+    height: 1rem;
+    border-radius: 5px;
+}
+
+.table-layout {
+    width: 60px;
+    height: 40px;
+}
+
+th,
+td {
+    vertical-align: middle;
+}
+
+.font-opt {
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.text {
+    color: #fff;
+}
+
+.width-200 {
+    width: 200px;
+}
+
+.width-25 {
+    width: 25rem;
+}
+
+.width-10 {
+    width: 10rem;
+}
+
+.width-8 {
+    width: 8rem;
+}
+
+.font-17 {
+    font-size: 17px;
+}
+
+.font-15 {
+    font-size: 15px;
+} 
+/* ************************************************************ */
+
+
+.card-box{
+    position: relative;
+    width: 100%;
+    padding: 40px;
+    display: grid;
+    /* grid-template-columns: repeat(4,1fr); */
+    grid-gap: 30px;
+    min-height: 20vh;
+    min-width: 20vh;
+}
+.card-box .card{
+    position: relative;
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.card-box .card .number{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: #00b800;
+}
+
+.card-box .card .cardName{
+    color: #313131;
+    font-size: 1.1em;
+    margin-top: 5px;
+
+}
+.card-box .card .iconBx{
+    font-size: 3.5em;
+    color: #cec9c9;
+}

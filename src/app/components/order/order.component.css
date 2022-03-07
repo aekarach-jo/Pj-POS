@@ -1,0 +1,102 @@
+.card-header{
+  background-color: white;
+}
+
+.card-body{
+  background-color: white;
+  margin: auto;
+  justify-content: center;
+
+}
+
+.card-footer{
+  background-color: white;
+  margin: auto;
+  height: 13rem;
+}
+
+.card-footer .form-group{
+ margin: 0px;
+ padding: 0px;
+ margin-left: 10rem;
+}
+
+.font-18px{
+  font-size: 18px;
+}
+
+/* .btn{
+  float: right;
+  margin-bottom: 1.5rem;
+  margin-top: 0rem;
+} */
+
+table{
+  width: 100%;
+  height: auto;
+}
+
+thead{
+  background-color: #BDD7EE;
+  height: 40px;
+}
+
+thead th{
+  color: white;
+  font-size: 16px;
+}
+.total{
+  color: red;
+}
+
+.text-underline{
+  text-decoration: underline;
+}
+
+img{
+  height: 300px;
+  width: auto;
+}
+
+.right{
+  text-align-last:right;
+}
+
+.col-7{
+  padding-right: 35rem;
+  text-align-last: right;
+}
+
+.btn-link{
+  color: #000;
+  background-color: #fff;
+}
+
+th, td {
+  border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+/* .btn-payment{
+ justify-content: center;
+} */
+
+.totalPrice {
+  font-size: 16px;
+  color: rgb(74, 0, 248);
+}
+
+.fade{
+  margin-top: 10rem;
+}
+
+.comfirm {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 18px;
+}
+.btn{
+  margin-bottom: 1rem;
+}
+
+
+

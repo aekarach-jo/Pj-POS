@@ -1,0 +1,296 @@
+.container-fluid {
+    margin-top: 1rem;
+}
+
+.card .header {
+    height: 46px;
+    text-align: center;
+    background-color: #313131;
+    color: white;
+    font-size: 18px;
+    margin: 0;
+    border: 1px solid rgb(201, 201, 201);
+}
+
+.card-footer {
+    background-color: white;
+    border-top: none;
+}
+
+
+/* 
+.col-9 .card-footer {
+    background-color: white;
+    border: 0px;
+    margin-top: 20px;
+}
+
+.col-9 .card-bill {
+    background-color: white;
+} */
+
+
+/* table */
+
+table {
+    text-align: center;
+}
+
+thead tr {
+    background-color: #313131;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    /* border: 2px solid #313131; */
+}
+
+.card-header {
+    background-color: #313131;
+    color: white;
+    text-align: center;
+}
+
+
+/* float padding */
+
+.right {
+    float: right;
+}
+
+
+/* font */
+
+.font-14 {
+    font-size: 14px;
+}
+
+.font-16 {
+    font-size: 16px;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+
+/* width , height*/
+
+.w-120px {
+    width: 130px;
+}
+
+.w-150px {
+    width: 150px;
+}
+
+.w-200px {
+    width: 200px;
+}
+
+.w-10vw {
+    /* width: 200px; */
+    width: 10vw;
+}
+
+.h-380px {
+    height: 390px;
+}
+
+.h-31px {
+    height: 31px;
+}
+
+.input-amount {
+    border: white;
+    background: #f2f6fc;
+    text-align: center;
+}
+
+
+/* .box-product {
+    border: 1px solid #d3d3d3;
+    box-shadow: 0 0 0px 0px #808080;
+} */
+
+.text-border-white form {
+    text-align: -webkit-center;
+}
+
+.table-delete-outline {
+    text-align: center;
+    color: rgb(255, 17, 0);
+}
+
+.bg-invisible {
+    background: #ffffff00;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0px;
+}
+
+.btn-add-product {
+    position: fixed;
+    right: 0px;
+    margin-top: -50px;
+}
+
+.hover:hover,
+.hover:focus {
+    border: 3px solid #9ccfff;
+}
+
+.tel {
+    cursor: pointer;
+}
+
+.tel:hover {
+    color: aqua;
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.card {
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3)
+}
+
+.ng-autocomplete ::ng-deep .autocomplete-container {
+    box-shadow: none;
+}
+
+.padding-card {
+    padding: 1vh;
+}
+
+.ng-autocomplete ::ng-deep .autocomplete-container ::ng-deep .input-container ::ng-deep input {
+    font-size: 0.875rem;
+    display: block;
+    height: 2.1875rem;
+    padding: 0.375rem 1rem;
+    font-weight: 400;
+    line-height: 1.52857143;
+    color: #495057;
+    border: 1px solid #dde6e9;
+    border-radius: 0.25rem;
+}
+
+.ng-autocomplete ::ng-deep .autocomplete-container ::ng-deep .input-container ::ng-deep input:hover {
+    border: 3px solid #9ccfff;
+}
+
+.h-300px {
+    min-height: 20rem;
+    /* max-height: 300px; */
+}
+
+.button-big {
+    height: 5vw;
+    width: 48%;
+    font-size: 2vw;
+}
+
+.totalPrice {
+    font-size: 5vw;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 2vh;
+    padding-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    margin: auto;
+}
+
+.width-inputt {
+    width: 100%;
+    border: 0px;
+    background-color: white;
+}
+
+.minwidth-table {
+    min-width: 50vw;
+}
+
+.tableList-size{
+    padding: 4px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.padding-custo {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 1vw;
+}
+
+.padding-promo {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.font-custo {
+    font-size: 1.5vw;
+    text-align: start;
+    align-items: flex-start;
+}
+
+.width-input {
+    width: 6vw;
+}
+
+
+.modal-titl {
+    margin-top: 10px;
+    margin-left: 550px;
+    font-size: 20px;
+}
+
+.data-border {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 20px;
+}
+
+.modal-header {
+    background-color: #313131;
+    color: white;
+}
+.modal-header-data {
+    background-color: #313131;
+    color: white;
+}
+
+.h1-text-center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button.form-control {
+    background-color: lavender;
+}
+
+.modal-dialog {
+    min-width: 60%;
+}
+
+.stockModal {
+    font-size: large;
+    font-weight: bold;
+    margin: auto;
+    background-color: #495057;
+}
+
+#head-style {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.tr-color{
+   
+    color: white;
+    font-size: 16px;
+    text-align: center;
+}

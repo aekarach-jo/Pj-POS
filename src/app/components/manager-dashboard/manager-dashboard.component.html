@@ -1,0 +1,294 @@
+
+<div *ngIf=" getDataProduct != undefined || getIncomeData != undefined || (this.nameProduct != [] || this.amountProduct != [])">
+    <div class="form-group ml-4 mt-4 float-right">
+        <div class="font-custo mr-3">วันที่ : {{time | date: 'dd/MM/yyyy'}} เวลา : {{time | date: 'HH:mm:ss'}}</div>
+    </div>
+    <div class="card-box">
+        <div class="row row-cols-sm-4">
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold" type="number" *ngIf="incomeAll == 0">0</div>
+                        <!-- <div class="text-lg font-weight-bold " type="number" *ngIf="income != 0">{{income}}</div> -->
+                        <div class="text-lg font-weight-bold " type="number" *ngIf="incomeAll != 0">{{incomeAll | currency:'THB':'symbol-narrow'}}</div>
+                    </div>
+                    <div class="cardName">รายรับทั้งหมด</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">paid</span>
+                </div>
+            </div>
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold " type="number">{{ costAll | currency:'THB':'symbol-narrow'}}</div>
+                    </div>
+                    <div class="cardName">ต้นทุนรวม</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">paid</span>
+                </div>
+            </div>
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold ">{{incomeAll - costAll | currency:'THB':'symbol-narrow'}}</div>
+                    </div>
+                    <div class="cardName">กำไรทั้งหมด</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">paid</span>
+                </div>
+            </div>
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold ">{{counterItemAll }}</div>
+                    </div>
+                    <div class="cardName">ยอดคำสั่งซื้อทั้งหมด</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">list</span>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-sm-4">
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold" type="number" *ngIf="incomeMonth == 0">0</div>
+                        <!-- <div class="text-lg font-weight-bold " type="number" *ngIf="income != 0">{{income}}</div> -->
+                        <div class="text-lg font-weight-bold " type="number" *ngIf="incomeMonth != 0">{{incomeMonth | currency:'THB':'symbol-narrow'}}</div>
+                    </div>
+                    <div class="cardName">รายรับเดือนนี้</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">paid</span>
+                </div>
+            </div>
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold " type="number">{{ costMonth | currency:'THB':'symbol-narrow'}}</div>
+                    </div>
+                    <div class="cardName">ต้นทุนรวม</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">paid</span>
+                </div>
+            </div>
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold ">{{incomeMonth - costMonth | currency:'THB':'symbol-narrow'}}</div>
+                    </div>
+                    <div class="cardName">กำไรเดือนนี้</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">paid</span>
+                </div>
+            </div>
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold ">{{counterItemMonth }}</div>
+                    </div>
+                    <div class="cardName">ยอดคำสั่งซื้อประจะเดือน</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">list</span>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-sm-4">
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold" type="number" *ngIf="income == 0">0</div>
+                        <!-- <div class="text-lg font-weight-bold " type="number" *ngIf="income != 0">{{income}}</div> -->
+                        <div class="text-lg font-weight-bold " type="number" *ngIf="income != 0">{{income | currency:'THB':'symbol-narrow'}}</div>
+                    </div>
+                    <div class="cardName">รายรับวันนี้</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">paid</span>
+                </div>
+            </div>
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold " type="number">{{cost| currency:'THB':'symbol-narrow'}}</div>
+                    </div>
+                    <div class="cardName">ต้นทุน</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">paid</span>
+                </div>
+            </div>
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold ">{{income-cost | currency:'THB':'symbol-narrow'}}</div>
+                    </div>
+                    <div class="cardName">กำไรวันนี้</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">paid</span>
+                </div>
+            </div>
+            <div class="col-sm-3 card">
+                <div>
+                    <div class="number">
+                        <div class="text-lg font-weight-bold ">{{counterItem }}</div>
+                    </div>
+                    <div class="cardName">ยอดคำสั่งซื้อประจำวัน</div>
+                </div>
+                <div class="iconBx">
+                    <span class="material-icons">list</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col card-shadow mt-4">
+                    <div class="container-fluid mt-4 mb-3">
+                        <h1 class="font-opt text-success">สินค้าขายดีประจำเดือน</h1>
+                        <div class="row mb-2" *ngFor="let list of  bestSeller2">
+                            <div class="col-9">
+                                <div class="float-left">{{list.productName}}</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="float-right">{{list.amount}} ชิ้น</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col card-shadow ">
+                    <div class="col">
+                        <div class="row">
+                            <h1 class="pt-4 font-opt text-success">ประวัติการขายสินค้า</h1>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="text-center">
+                                <mat-radio-group aria-labelledby="radio-group-label" class="radio-group m-0"
+                                    [(ngModel)]="chooseOption">
+                                    <mat-radio-button class="radio-button " *ngFor="let choose of option"
+                                        [value]="choose">
+                                        {{choose}}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                            <div class="btn btn-info form-control m-3" (click)="addTab()" (click)="chartToday()"
+                                data-toggle="modal" data-target="#modalToday">ค้นหา
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="ml-2 float-right">
+                                <div class="row">
+                                    <div class="col">
+                                        <mat-form-field appearance="outline" class="width-200 m-0">
+                                            <mat-label>ค้นหาตามวันที่</mat-label>
+                                            <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
+                                                <input matStartDate formControlName="start" placeholder="Start date">
+                                                <input matEndDate formControlName="end" placeholder="End date">
+                                            </mat-date-range-input>
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-date-range-picker #picker>
+                                                <mat-date-range-picker-actions>
+                                                    <button mat-button matDateRangePickerCancel>ยกเลิก</button>
+                                                    <button mat-raised-button color="primary" matDateRangePickerApply
+                                                        (click)="findDatePicker()" (click)="chartToday()"
+                                                        data-toggle="modal" data-target="#modalToday">ยืนยัน</button>
+                                                </mat-date-range-picker-actions>
+                                            </mat-date-range-picker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9 pb-2">
+            <div class="container-fluid card-shadow mt-4 pt-4">
+                <h1 class="font-opt text-success">กราฟแสดงยอดขาย</h1>
+                <canvas id="chartResults"></canvas>
+            </div>
+        </div>
+
+
+        <div class="modal fade modal-size" id="modalToday" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-full-width">
+                <div class="modal-content modal-content-full-width">
+                    <div class="modal-header modal-header-full-width modal-header-bg text-white">
+                        <h1 id="exampleModalLabel ">{{chooseOption}}</h1>
+                        <input class="form-control float-right width-10" [(ngModel)]="searchText"
+                            placeholder="ค้นหาข้อมูลสินค้า ">
+                    </div>
+                    <div class="modal-body ">
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <div class="container ">
+                                    <canvas id="chartToday"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container ">
+                                    <mat-tab-group class="ml-2" [selectedIndex]="selected.value"
+                                        (selectedIndexChange)="selected.setValue($event)">
+                                        <mat-tab *ngFor=" let tab of tabs; let index=index" [label]="tab">
+                                            <table class="table table-bordered ">
+                                                <thead class="text-center bg-secondary text">
+                                                    <tr>
+                                                        <th scope="col width-25">ชื่อสินค้า</th>
+                                                        <th scope="col width-8">จำนวนที่ขาย</th>
+                                                        <th scope="col width-8">ราคาต่อชิ้น</th>
+                                                        <th scope="col width-8">ราคาทั้งหมด</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr
+                                                        *ngFor="let i of dataProduct | filter: searchText||filterType | paginate : config">
+                                                        <td>
+                                                            <div class="text-left">{{i.productName}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center">{{i.amount}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-right">{{i.price}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-right">{{i.totalPrice}}</div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="pagination float-right">
+                                                <pagination-controls maxSize="20" responsiv="true"
+                                                    previousLabel="ก่อนหน้า" nextLabel="ถัดไป"
+                                                    (pageChange)="onPageChange($event)">
+                                                </pagination-controls>
+                                            </div>
+                                        </mat-tab>
+                                    </mat-tab-group>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@200;300;400&display=swap');
+.card {
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 2px #313131;
+    border: 0px;
+}
+
+.body {
+    background-color: #ffffff;
+    height: 100%;
+    width: 100%;
+    /* position: relative; */
+    /* position: fixed; */
+}
+
+.card-head {
+    background-color: #313131;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px
+}
+
+.fstlogoShop {
+    color: #00b800;
+    font-size: xx-large;
+    font-weight: bold;
+    cursor: default;
+    cursor: pointer;
+}
+
+.secLogoShop {
+    color: rgb(255, 255, 255);
+    font-size: xx-large;
+    font-weight: bold;
+    cursor: default;
+    cursor: pointer;
+}
+.color-user{
+    color: rgb(182, 182, 182);
+    padding-top: 16px;
+    padding-right: 18px;
+}
+.menuBar {
+    font-size: 20px;
+}
+
+.menuBar :hover {
+    color: #fff;
+    background-color: #545b62;
+    border-color: #4e555b;
+}
+
+.container-mainpage {
+    margin: auto;
+    padding: 0%;
+}
+
+.wrapper {
+    height: 100vh;
+}
+
+#navStyle {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #c0bebe;
+    box-shadow: 0 1 #b1afaf;
+    box-shadow: 0 .15rem 1.75rem 0 #3a3b4526;
+    background: rgb(238, 253, 255);
+    background: #313131;
+    /* position: fixed; */
+}
+
+.navbar {
+    padding: 0%;
+    margin-right: 5px;
+}
+
+.btn-outline-secondary {
+    color: #ffffff80;
+    border-color: #ffffff80;
+}
+
+.text {
+    color: #ffffff80;
+}
+
+.changestyle {
+    color: #ffffff;
+}
+
+.active {
+    color: white;
+}
+
+
+/* .active:hover, .active:focus {
+    color: #fff;
+    background-color: #545b62;
+    border-color: #4e555b;
+} */
+
+#col {
+    background-color: white;
+}
+
+.btn-group button {
+    font-size: 18px;
+}
+
+.dropdown-toggle {
+    background-color: #313131;
+    border: #313131;
+    font-size: 18px;
+}
+
+.dropdown-item {
+    color: black;
+}
+
+.fab {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+    box-shadow: 0 0 0.9em 1px #6b6b6b;
+}
+
+button:hover {
+    color: rgb(116, 211, 255)
+}
+
+
+/* #mainpage-menu {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 2px #313131;
+    border: 0px;
+}
+
+.body {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}
+
+.card-head {
+    background-color: #313131;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px
+}
+
+.fstlogoShop {
+    color: #00b800;
+    font-size: xx-large;
+    font-weight: bold;
+    cursor: default;
+}
+
+.secLogoShop {
+    color: snow;
+    font-size: xx-large;
+    font-weight: bold;
+    cursor: default;
+}
+
+.menuBar {
+    font-size: large;
+    font-weight: bold;
+}
+
+.container-mainpage {
+    margin: auto;
+    padding: 0%;
+}
+
+.wrapper {
+    height: 100vh;
+}
+
+#navStyle {
+    width: 100%;
+    background: #313131;
+    padding: 20px;
+    border-bottom: 1px solid #c0bebe;
+    box-shadow: 0 1 #b1afaf;
+    box-shadow: 0 .15rem 1.75rem 0 #3a3b4526;
+}
+
+.navbar {
+    padding: 0%;
+    margin-right: 5px;
+}
+
+.btn-outline-secondary {
+    color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.text {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.changestyle {
+    color: white;
+}
+
+.active:hover, .active:focus {
+    font-size: 160%;    
+    color: white;
+}
+
+#col {
+    background-color: white;
+} */

@@ -1,0 +1,98 @@
+<div class="body wrapper" *ngIf="statusLogin == 'login'">
+    <div class="container-fluid container-mainpage">
+        <nav class="navbar navbar-expand-lg sticky-top" id="navStyle">
+            <div class="navbar-brand fstlogoShop" (click)="checkColor('0')">3MEEPOS</div>
+            <button class="navbar-toggler btn-secondary" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation" data-target="#navbarToggle">
+                <span class="material-icons ">menu</span>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+                
+                <ul class="navbar-nav mr-auto mt-lg-0 text-center">
+                    <li class="nav-item" *ngIf="dataUser == 'CEO' || dataUser == 'ADMIN'">
+                        <a class="nav-link text menuBar active" [routerLink]="['/manager-dashboard']" [class.changestyle]='statusNav[6]' (click)="checkColor('6')">หน้าหลัก</a>
+                    </li>
+                    <li class="nav-item" *ngIf="dataUser == 'CEO' || dataUser == 'ADMIN' || dataUser == 'SELL'">
+                        <a class="nav-link text menuBar active" [routerLink]="['/sell-main']" [class.changestyle]='statusNav[1]' (click)="checkColor('1')">ขายหน้าร้าน</a>
+                    </li>
+                    <li class="nav-item" *ngIf="dataUser == 'CEO' || dataUser == 'ADMIN' || dataUser == 'SELL'">
+                        <a class="nav-link text menuBar active" [routerLink]="['/member-create']" [class.changestyle]='statusNav[3]' (click)="checkColor('3')">สมาชิก</a>
+                    </li>
+                    <li class="nav-item" *ngIf="dataUser == 'CEO' || dataUser == 'ADMIN' || dataUser == 'STOCK'">
+                        <a class="nav-link text menuBar active" [routerLink]="['/stock-balance']" [class.changestyle]='statusNav[2]' (click)="checkColor('2')">คลังสินค้า</a>
+                    </li>
+                    <li class="nav-item" *ngIf="dataUser == 'CEO' || dataUser == 'ADMIN' || dataUser == 'SELL' || dataUser == 'STOCK'">
+                        <a class="nav-link text menuBar active" [routerLink]="['/product-detail']" [class.changestyle]='statusNav[4]' (click)="checkColor('4')">ข้อมูลสินค้า</a>
+                    </li>
+                    <li class="nav-item" *ngIf="dataUser == 'CEO' || dataUser == 'ADMIN' || dataUser == 'SELL'">
+                        <a class="nav-link text menuBar active" [routerLink]="['/sell-history']" [class.changestyle]='statusNav[5]' (click)="checkColor('5')">ประวัติการขาย</a>
+                    </li>
+                    <li class="nav-item" *ngIf="dataUser == 'CEO' || dataUser == 'ADMIN'">
+                        <a class="nav-link text menuBar active" [routerLink]="['/user-detail']" [class.changestyle]='statusNav[6]' (click)="checkColor('6')">ข้อมูลพนักงาน</a>
+                    </li>
+                </ul>
+                <div class="form-inline my-2 my-lg-0">
+                    <div class="form-group"><p class="color-user">{{this.dataUserName}}</p></div>
+                    <div class="form-group">
+                        <div type="button" class="text material-icons mr-3 mt-1 text-secondary" [routerLink]="['/setting']" [class.changestyle]='statusNav[7]' (click)="checkColor('7')" data-toggle="modal" title="ตั้งค่า">
+                            settings
+                        </div>
+                        <button class="btn btn-outline-success" (click)="logout()" type="submit">ออกจากระบบ</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<!-- login -->
+<div class="container-fluid" *ngIf="statusLogin == 'logout' || statusLogin == null">
+    <div class="row" style="padding-top: 12%;">
+        <div class="col-sm"></div>
+        <div class="col-sm ">
+            <form [formGroup]="formLogin" (ngSubmit)="checkUserAndPass()">
+                <div class="card">
+                    <div class="card-head py-3">
+                        <h1 class="text-center text-white mt-3">
+                            <div> 3MeeShop</div>
+                        </h1>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="form-inline mb-2">
+                                <span class="material-icons">
+                                    account_circle
+                                </span>
+                                <label class="pl-1 mt-1">Username</label>
+                            </div>
+                            <input type="text" class="form-control" formControlName="userName" [ngClass]="{'is-invalid': submitLogin}" (ngModelChange)="onChange()">
+                            <div class="invalid-feedback" *ngIf="statusUsername == false && formValidLogin.userName.errors">
+                                กรุณากรอกชื่อบัญชี
+                            </div>
+                            <div class="invalid-feedback" *ngIf="statusUsername == true">
+                                บัญชีผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-inline mb-2">
+                                <span class="material-icons">
+                                vpn_key
+                                </span>
+                                <label class="pl-1 mt-1">Password</label>
+                            </div>
+                            <input type="password" class="form-control" formControlName="password" (ngModelChange)="onChange()">
+                            <button type="submit" class="btn btn-success btn-lg btn-block mt-5 ">เข้าสู่ระบบ</button>
+                        </div>
+                    </div>
+                    <div class="card-footer  text-center">
+                        <label class="mb-0" disable="true">version {{versionForHtml}}</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+    <div class="col-sm">
+    </div>
+</div>

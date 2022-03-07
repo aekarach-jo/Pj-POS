@@ -1,0 +1,328 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8">
+            <div class="card h-380px minwidth-table">
+                <div class="card-body table-responsive p-0">
+                    <table class="table text-center ">
+                        <thead>
+                            <tr>
+                                <th> รหัสสินค้า </th>
+                                <th> รายละเอียดสินค้า </th>
+                                <th> จำนวน </th>
+                                <th> ราคา / ชิ้น </th>
+                                <th> ราคารวม </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr   *ngFor="let data of multiListSellItem ; let i = index">
+                                <th  scope="row" class=" tableList-size"> {{data.productId}} </th>
+                                <td class="tableList-size"> {{data.productName}} </td>
+                                <td class=" tableList-size">
+                                    <input class="input-amount width-input" type="number"
+                                        [(ngModel)]="this.multiListSellItem[i].amount" (keyup)="whenKeyNumber()"
+                                        oninput="this.value = this.value.replace(/[^0-9]/)">
+                                </td>
+                                <td class=" tableList-size"> {{data.price}} </td>
+                                <td class=" tableList-size"> {{data.price*multiListSellItem[i].amount}}</td>
+                                <td class="table-delete-outline tableList-size">
+                                    <span (click)="deleteListSell(i)" type="button" class="material-icons">
+                                        delete_forever
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class=" tableList-size">
+                                <td class="text-border-white">
+                                    <form [formGroup]="formProduct">
+                                        <div class="w-10vw">
+                                            <input class="form-control  pl-0 pr-0 tableList-size"
+                                                placeholder="กรอกรหัสสินค้า" formControlName="productId"
+                                                (keyup.enter)="submitIdproduct()">
+                                            <!-- <ng-autocomplete [data]="dataProductAll" [searchKeyword]="'productId'" placeholder="กรอกรหัสสินค้า" formControlName="productId" (keyup.enter)="submitIdproduct()" (selected)='selectEvent($event)' [itemTemplate]="itemTemplate"> -->
+                                            <ng-template #itemTemplate let-item>
+                                                {{itemTemplate}}
+                                                <a [innerHTML]="item.productId"></a>
+                                            </ng-template>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 pl-0">
+            <div class="card">
+                <div class="card-header font-18">
+                    ยอดชำระ
+                </div>
+                <div class="card-body text-center">
+                    <div class="totalPrice">
+                        <input class="width-inputt text-center" type="text" value={{totalPrice}} disabled="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col pr-0">
+            <div class="card h-300px">
+                <div class="padding-card">
+                    <!-- <div class="row padding-custo">
+                        <div class="col-1 mt-2 ml-3">
+                            <mat-icon> person </mat-icon>
+                        </div>
+                        <div class="col-2 mt-2 text-center"> : </div>
+                        <div class="col pl-0 mr-2">
+                            <form [formGroup]="formCustomer" (ngSubmit)="findCustomer(formCustomer.value.customerId)">
+                                <input formControlName="customerId" type="text" class="form-control hover font-14 p-2"
+                                    placeholder="กรอกรหัสลูกค้า">
+                            </form>
+                        </div>
+                    </div> -->
+                    <div class="row padding-custo">
+                        <div class="col-1 mt-2 ml-3">
+                            <mat-icon> call </mat-icon>
+                        </div>
+                        <div class="col-2 mt-2 text-center"> : </div>
+                        <div class="col pl-0 mr-2">
+                            <form [formGroup]="formCustomer"
+                                (ngSubmit)="findCustomerByTel(formCustomer.value.customerTel)">
+                                <input formControlName="customerTel" type="text" class="form-control hover font-14 p-2"
+                                    placeholder="กรอกเบอร์โทรลูกค้า">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row padding-custo text-center pt-0" *ngIf="dataCustomerById != null">
+                        <div class="col">
+                            <div class="font-custo padding-custo mb-1">รหัสลูกค้า : {{dataCustomerById.customerId}}
+                            </div>
+                            <div class="font-custo padding-custo mb-1">ชื่อลูกค้า : {{dataCustomerById.customerName}}
+                            </div>
+                            <div class="font-custo padding-custo mb-1">เบอร์ติดต่อ : {{dataCustomerById.customerTel}}
+                            </div>
+                            <div class="font-custo padding-custo mb-1" *ngIf="dataCustomerById.type == 'standard'">
+                                ประเภทลูกค้า : ลูกค้าทั่วไป</div>
+                            <div class="font-custo padding-custo mb-1" *ngIf="dataCustomerById.type == 'member'">
+                                ประเภทลูกค้า : สมาชิก</div>
+                            <div class="font-custo padding-custo mb-1" *ngIf="dataCustomerById.type == 'vip'">
+                                ประเภทลูกค้า : ลูกค้า VIP</div>
+                            <div class="font-custo padding-custo mb-1" *ngIf="dataCustomerById != null"> คะแนน :
+                                {{dataCustomerById.score}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col pr-0">
+            <div class="card h-300px">
+                <div class="form-group ml-4 mt-4">
+                    <div class="row">
+                        <div class="col float-left">
+                            <div class="font-custo mb-2">วันที่ : {{time | date: 'dd/MM/yyyy'}} </div>
+                        </div>
+                        <div class="col float-right">
+                            <div class="font-custo">เวลา : {{time | date: 'HH:mm:ss'}}</div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="form-group row text-center m-0 mt-2 mb-3 pl-2 pr-1 font-custo">
+                    <div class="col padding-promo mt-1"> รวมสุทธิ </div>
+                    <div class="col-1 padding-promo mt-1"> : </div>
+                    <div class="col-6 padding-promo">
+                        <input type="number" class="form-control form-control-sm text-center"
+                            [(ngModel)]="formDataSell.value.netPrice" disabled>
+                    </div>
+                </div>
+                <div class="form-group row text-center m-0 mb-3 mt-2 pl-2 pr-1 font-custo">
+                    <div class="col padding-promo mt-1"> ภาษี </div>
+                    <div class="col-1 padding-promo mt-1"> : </div>
+                    <div class="col-6 padding-promo">
+                        <div class="input-group">
+                            <input type="number" class="form-control form-control-sm text-center"
+                                [(ngModel)]="formDataSell.value.vat" disabled>
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-invisible h-31px" disabled> % </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row text-center m-0 mt-2 pl-2 pr-1 font-custo">
+                    <div class="col padding-promo mt-1"> ส่วนลด </div>
+                    <div class="col-1 padding-promo mt-1"> : </div>
+                    <div class="col-6 mb-3">
+                        <div class="row padding-promo mb-1">
+                            <div class="input-group mb-1">
+                                <input class="form-control form-control-sm text-center" type="number" placeholder="0"
+                                    [(ngModel)]="formdiscount.value.perDiscount" (keyup)="solveTotalPrice()"
+                                    oninput="this.value = this.value.replace(/[^0-9]/)">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-invisible h-31px">%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row padding-promo">
+                            <div class="input-group mb-1">
+                                <input class="form-control form-control-sm text-center" type="number" placeholder="0"
+                                    [(ngModel)]="formdiscount.value.discount" (keyup)="solveTotalPrice()"
+                                    oninput="this.value = this.value.replace(/[^0-9]/)">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-invisible h-31px pl-1 pr-1"> บาท </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-300px">
+                <div class="card-body pb-0">
+                    <div class="row text-center mb-2 font-custo">
+                        <div class="col padding-promo mt-1"> ยอดชำระ </div>
+                        <div class="col-1 padding-promo mt-1"> : </div>
+                        <div class="col-7 padding-promo">
+                            <input type="number" class="form-control form-control text-center" [ngModel]="totalPrice"
+                                disabled>
+                        </div>
+                    </div>
+                    <form [formGroup]="formmoney">
+                        <div class="form-group row text-center mb-2 font-custo">
+                            <div class="col padding-promo mt-1"> เงินสด </div>
+                            <div class="col-1 padding-promo mt-1"> : </div>
+                            <div class="col-7 padding-promo">
+                                <input class="form-control text-center hover" formControlName="receiveMoney"
+                                    placeholder="กรอกจำนวนเงิน" (keyup)="solveTotalPrice()"
+                                    [ngClass]="{'is-invalid': submitRecive && formControllcalculate.receiveMoney.errors}">
+                                <div class="invalid-feedback"
+                                    *ngIf="submitRecive && formControllcalculate.receiveMoney.errors">
+                                    <div *ngIf="formControllDiscount.receiveMoney.errors.pattern">
+                                        กรุณากรอกจำนวนเงิน
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-group row text-center font-custo">
+                        <div class="col padding-promo mt-1"> เงินทอน </div>
+                        <div class="col-1 padding-promo mt-1"> : </div>
+                        <div class="col-7 padding-promo">
+                            <input *ngIf="formDataSell.value.changeMoney >= 0" type="number"
+                                class="form-control text-center" disabled [(ngModel)]="formDataSell.value.changeMoney">
+                            <input *ngIf="formDataSell.value.changeMoney < 0" type="number"
+                                class="form-control text-center" placeholder="เงินไม่พอ">
+                        </div>
+                    </div>
+                </div>
+                <div class="pl-4 pr-4">
+                    <button type="button" class="btn btn-warning right button-big " data-toggle="modal"
+                        data-target="#add">
+                        คืนสินค้า
+                    </button>
+                </div>
+                <div class="card-footer">
+                    <button *ngIf="formmoney.value.receiveMoney == 0 || formmoney.value.receiveMoney == null || formmoney.value.receiveMoney < totalPrice" class="btn btn-secondary float-left mr-2 button-big" disabled>
+                        สร้างบิล
+                    </button>
+                    <button *ngIf="formmoney.value.receiveMoney > 0 && formDataSell.value.changeMoney >= 0  && formmoney.value.receiveMoney >= totalPrice" class="btn btn-success float-left mr-2 button-big" type="submit" (click)="addSell()">
+                        สร้างบิล
+                    </button>
+                    <button class="btn btn-danger right button-big" (click)="clearListSellItem()"> ยกเลิก
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal add -->
+    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="bill" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="stockModal"> คืนสินค้าเข้าคลัง </div>
+                    <button type="button" #closebuttonAdd class="close" hidden="true"
+                        data-dismiss="modal">&times;</button>
+                </div>
+                <div class="card-add p-4">
+                    <div class="card-body-modal-add">
+                        <form [formGroup]="formstock">
+                            <div class="row">
+                                <div class="form-inline">
+                                    <div class="col">
+                                        <label class="billId"> รหัสบิลสินค้า : </label>
+                                    </div>
+                                    <div class="col mt-3">
+                                        <input type="text" class="form-control form-control-sm w-20"
+                                            formControlName="billProduct" placeholder="รหัสบิล"
+                                            [ngClass]="{'is-invalid': submitstock && formStock.billProduct.errors}">
+                                        <div class="invalid-feedback"
+                                            *ngIf="submitstock && formStock.billProduct.errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="row ">
+                        <div class="col">
+                            <table class="table mt-3 text-center">
+                                <thead class="text-success">
+                                    <tr class="tr-color">
+                                        <th scope="col" class="w-20">รหัสสินค้า</th>
+                                        <th scope="col">ชื่อสินค้า</th>
+                                        <th scope="col" class="w-20">ราคา</th>
+                                        <th scope="col" class="w-20">จำนาน</th>
+                                        <th scope="col">ราคารวม</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let mlp of multiListProduct; let i = index">
+                                        <td scope="col">{{multiListProduct[i].productId}}</td>
+                                        <td scope="col">{{multiListProduct[i].productName}}</td>
+                                        <td scope="col">
+                                            <input type="number" class="text-center form-control form-control-sm"
+                                                (keyup)="whenAddProductToArray()"
+                                                [(ngModel)]="multiListProduct[i].price">
+                                        </td>
+                                        <td scope="col">
+                                            <input type="number" class="text-center form-control form-control-sm"
+                                                (keyup)="whenAddProductToArray()"
+                                                [(ngModel)]="multiListProduct[i].amount">
+                                        </td>
+                                        <td scope="col">{{multiListProduct[i].totalPrice}}</td>
+                                        <td scope="col">
+                                            <span type="button" (click)="delectListProduct(i)"
+                                                class="material-icons text-danger">delete_outline</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="col" class=" noborder">
+                                            <input type="text" class="text-center form-control form-control-sm"
+                                                placeholder="กรุณากรอกรหัสสินค้า"
+                                                [(ngModel)]="formListProduct.value.productId"
+                                                (keyup.enter)="findProductById()">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="row float-right">
+
+                                <div class=" submitProduct col float-right">
+                                    <button type="button" (click)="addProduct()"
+                                        class="btn btn-outline-primary mr-3">ยืนยัน
+                                    </button>
+                                    <button type="button" class="btn btn-outline-danger" (click)="closeStock()"
+                                        data-dismiss="modal">ยกเลิก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

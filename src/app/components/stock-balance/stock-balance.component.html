@@ -1,0 +1,198 @@
+<div class="container-fluid">
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="float-left">
+                    <div class="input-group">
+                        <mat-form-field appearance="outline" class="zoom-0.8">
+                            <mat-label>วัน/เดือน/ปี</mat-label>
+                            <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
+                                <input matStartDate formControlName="start" placeholder="Start date">
+                                <input matEndDate formControlName="end" placeholder="End date">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker>
+                                <mat-date-range-picker-actions>
+                                    <button mat-button matDateRangePickerCancel>ยกเลิก</button>
+                                    <button mat-raised-button color="primary" matDateRangePickerApply (click)="findDate()">ยืนยัน</button>
+                                </mat-date-range-picker-actions>
+                            </mat-date-range-picker>
+                        </mat-form-field>
+                        <div class="btn-group ml-3 mt-1 h-50">
+                            <button class="btn btn-outline-secondary" type="button" (click)="getAlldatastock()">รีเซ็ต</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mt-2">
+                <div class="center-stock text-success">คลังสินค้า</div>
+            </div>
+            <div class="col mt-1">
+                <div class="float-right">
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#add">
+                      <div class="form-inline">
+                        <div class="mr-2">เพิ่มสินค้าเข้าคลัง</div>
+                        <div class="material-icons">add_circle_outline</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <mat-spinner class="spiner" *ngIf="getdatastock==null"></mat-spinner>
+            <table class="table text-center table-bordered " *ngIf="getdatastock!=null">
+                <thead class="text-success" id="head-style">
+                    <tr>
+                        <th scope="col">รหัสบิลสินค้า</th>
+                        <th scope="col">รายการ</th>
+                        <th scope="col">วันที่นำเข้า</th>
+                        <th scope="col">เวลานำเข้า</th>
+                        <th scope="col">ข้อมูลสินค้า</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ds of getdatastock|paginate: config">
+                        <td>{{ds.billProduct}}</td>
+                        <td class="text-center">{{ds.listProduct.length}}</td>
+                        <td>{{ds.creationDatetime | date :"dd/MM/yyyy"}}</td>
+                        <td>{{ds.creationDatetime | date :"HH:mm น."}}</td>
+                        <td>
+                            <div type="button" (click)="showData(ds.stockId)" class="text-313131 material-icons" data-toggle="modal" data-target="#exampleModal" data-placement="top" title="แสดงข้อมูล">
+                                menu
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <pagination-controls class="float-right" maxSize="7" responsiv="true" previousLabel="ก่อนหน้า" nextLabel="ถัดไป" (pageChange)="pageChanged($event) "></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- modal add -->
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="bill" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="stockModal"> เพิ่มสินค้าเข้าคลัง </div>
+                <button type="button" #closebuttonAdd class="close" hidden="true" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="card-add">
+                <div class="card-body-modal-add">
+                    <form [formGroup]="formstock">
+                        <div class="row">
+                            <div class="form-inline">
+                                <div class="col">
+                                    <label class="billId"> รหัสบิลสินค้า : </label>
+                                </div>
+                                <div class="col mt-3">
+                                    <input type="text" class="form-control form-control-sm w-20" formControlName="billProduct" placeholder="รหัสบิล" [ngClass]="{'is-invalid': submitstock && formStock.billProduct.errors}">
+                                    <div class="invalid-feedback" *ngIf="submitstock && formStock.billProduct.errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row ">
+                    <div class="col">
+                        <table class="table mt-3 text-center">
+                            <thead class="text-success">
+                                <tr>
+                                    <th scope="col" class="w-20">รหัสสินค้า</th>
+                                    <th scope="col">ชื่อสินค้า</th>
+                                    <th scope="col" class="w-20">ราคาทุน</th>
+                                    <th scope="col" class="w-20">จำนาน</th>
+                                    <th scope="col">ราคารวม</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let mlp of multiListProduct; let i = index">
+                                    <td scope="col">{{multiListProduct[i].productId}}</td>
+                                    <td scope="col">{{multiListProduct[i].productName}}</td>
+                                    <td scope="col">
+                                        <input type="number" class="text-center form-control form-control-sm" (keyup)="whenAddProductToArray()" [(ngModel)]="multiListProduct[i].price">
+                                    </td>
+                                    <td scope="col">
+                                        <input type="number" class="text-center form-control form-control-sm" (keyup)="whenAddProductToArray()" [(ngModel)]="multiListProduct[i].amount">
+                                    </td>
+                                    <td scope="col">{{multiListProduct[i].totalPrice}}</td>
+                                    <td scope="col">
+                                        <span type="button" (click)="delectListProduct(i)" class="material-icons text-danger">delete_outline</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="col" class=" noborder">
+                                        <input type="text" class="text-center form-control form-control-sm" placeholder="กรุณากรอกรหัสสินค้า" [(ngModel)]="formListProduct.value.productId" (keyup.enter)="findProductById()">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row float-right">
+                            <div class=" submitProduct col float-right">
+                                <button type="button" (click)="addProduct()" class="btn btn-outline-primary mr-3">ยืนยัน
+                </button>
+                                <button type="button" class="btn btn-outline-secondary" (click)="closeStock()" data-dismiss="modal">ยกเลิก</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ข้อมูลสินค้า -->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog-data" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+
+            <div class="modal-header-data bg-313131">
+                <button type="button" class="close float-right" hidden="true" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+</button>
+                <h1 class="text-center mt-3">ข้อมูลสินค้า</h1>
+            </div>
+
+            <div class="modal-body mb-0 pb-0" *ngIf="showdata != null">
+                <div class="row">
+                    <div class="form-inline">
+                        <label>รหัสบิล : {{showdata.billProduct}}</label>
+                        <label> {{showdata.creationDatetime | date:'วันที่ : d/M/yyyy'}}</label>
+                        <label> {{showdata.creationDatetime | date:'เวลา : HH:mm น.'}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="data-border">
+                <table class="texe-center w-100">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col-2">รหัสสินค้า</th>
+                            <th class="text-center" scope="col-2">ชื่อสินค้า</th>
+                            <th class="text-center" scope="col-2">ราคาทุน</th>
+                            <th class="text-center" scope="col-2">จำนวน</th>
+                            <th class="text-center" scope="col-2">ราคารวม</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="showdata !=null">
+                        <tr *ngFor="let i of showdata.listProduct">
+                            <td class="text-center">{{i.productId}}</td>
+                            <td class="text-center">{{i.productName}}</td>
+                            <td class="text-center">{{i.price}}</td>
+                            <td class="text-center">{{i.amount}}</td>
+                            <td class="text-center">{{i.totalPrice}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
